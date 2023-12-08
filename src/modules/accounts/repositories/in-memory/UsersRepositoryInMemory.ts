@@ -35,6 +35,15 @@ class UsersRepositoryInMemory implements IUsersRepository {
       this.users[index] = updatedUser;
     }
   }
+
+  async delete(id: string): Promise<void> {
+    const index = this.users.findIndex((user) => user.id === id);
+
+    if (index !== -1) {
+      // Remova o usuário da posição encontrada
+      this.users.splice(index, 1);
+    }
+  }
 }
 
 export { UsersRepositoryInMemory };
