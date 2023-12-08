@@ -26,6 +26,15 @@ class UsersRepositoryInMemory implements IUsersRepository {
   async findAll(): Promise<User[]> {
     return this.users;
   }
+
+  async save(updatedUser: User): Promise<void> {
+    const index = this.users.findIndex((user) => user.id === updatedUser.id);
+
+    if (index !== -1) {
+      // Substitua o usuário na posição encontrada com o usuário atualizado
+      this.users[index] = updatedUser;
+    }
+  }
 }
 
 export { UsersRepositoryInMemory };
