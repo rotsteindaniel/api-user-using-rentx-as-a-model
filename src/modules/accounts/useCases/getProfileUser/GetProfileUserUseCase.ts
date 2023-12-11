@@ -5,7 +5,7 @@ import { IUserResponseDTO } from "@modules/accounts/dtos/IUserResponseDTO";
 import { UserMap } from "@modules/accounts/mapper/UserMap";
 
 @injectable()
-class ProfileUserUseCase {
+class GetProfileUserUseCase {
   constructor(
     @inject("UsersRepositoryInMemory")
     private UsersRepositoryInMemory: IUsersRepository
@@ -17,4 +17,4 @@ class ProfileUserUseCase {
   }
 }
 
-export { ProfileUserUseCase };
+export { GetProfileUserUseCase };

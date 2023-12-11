@@ -1,17 +1,19 @@
 import { Router } from "express";
 
 import { CreateUserController } from "@modules/accounts/useCases/createUser/CreateUserController";
-import { ensureAuthenticated } from "@shared/infra/http/middlewares/ensureAuthenticated";
-import { ProfileUserController } from "@modules/accounts/useCases/profileUserUseCase/ProfileUserController";
+import { DeleteUserController } from "@modules/accounts/useCases/deleteUser/DeleteUserController";
 import { ListUsersController } from "@modules/accounts/useCases/listUsers/ListUsersController";
-import { UpdateUserController } from "@modules/accounts/useCases/updateUserUseCase/UpdateUserController";
-import { DeleteUserController } from "@modules/accounts/useCases/deleteUserUseCase/DeleteUserController";
+import { UpdateUserController } from "@modules/accounts/useCases/updateUser/UpdateUserController";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
+import { GetUserProfileController } from "@modules/accounts/useCases/getProfileUser/GetProfileUserController";
+
+
 
 const usersRoutes = Router();
 
 const createUserController = new CreateUserController();
 const listUsersController = new ListUsersController();
-const profileUserController = new ProfileUserController();
+const profileUserController = new GetUserProfileController();
 const updateUserController = new UpdateUserController();
 const deleteUserController = new DeleteUserController();
 
