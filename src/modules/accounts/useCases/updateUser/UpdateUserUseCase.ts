@@ -3,6 +3,7 @@ import { inject, injectable } from "tsyringe";
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import { IUserResponseDTO } from "@modules/accounts/dtos/IUserResponseDTO";
 import { UserMap } from "@modules/accounts/mapper/UserMap";
+import { NotFoundError } from "@shared/errors/ApiError";
 
 interface IRequest {
   id: string;
@@ -22,7 +23,7 @@ class UpdateUserUseCase {
     // Verifique se o usuário existe antes de tentar atualizá-lo
     if (!user) {
       // Lançar uma exceção ou retornar uma resposta adequada
-      throw new Error("User not found");
+      throw new NotFoundError("User not found");
     }
 
     // Atualize os dados do usuário

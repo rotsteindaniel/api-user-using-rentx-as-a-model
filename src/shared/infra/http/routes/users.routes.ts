@@ -7,8 +7,6 @@ import { UpdateUserController } from "@modules/accounts/useCases/updateUser/Upda
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
 import { GetUserProfileController } from "@modules/accounts/useCases/getProfileUser/GetProfileUserController";
 
-
-
 const usersRoutes = Router();
 
 const createUserController = new CreateUserController();

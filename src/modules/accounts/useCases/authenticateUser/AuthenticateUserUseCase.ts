@@ -3,9 +3,8 @@ import { sign } from "jsonwebtoken";
 import { inject, injectable } from "tsyringe";
 
 import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
-import { AppError } from "@shared/errors/AppError";
+import { BadRequestError } from "@shared/errors/ApiError";
 import auth from "@config/auth";
-import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 
 interface IRequest {
   email: string;
@@ -32,13 +31,13 @@ class AuthenticateUserUseCase {
     const { expires_in_token, secret_token } = auth;
 
     if (!user) {
-      throw new AppError("Email or password incorrect!");
+      throw new BadRequestError("Email or password incorrect!");
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new AppError("Email or password incorrect!");
+      throw new BadRequestError("Email or password incorrect!");
     }
 
     let token: string | undefined;

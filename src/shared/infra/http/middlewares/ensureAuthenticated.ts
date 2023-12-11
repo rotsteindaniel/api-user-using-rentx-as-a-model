@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
 
-import { AppError } from "@shared/errors/AppError";
+import { UnauthorizedError } from "@shared/errors/ApiError";
 import auth from "@config/auth";
 
 interface IPayload {
@@ -16,7 +16,7 @@ export async function ensureAuthenticated(
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
-    throw new AppError("Token missing", 401);
+    throw new UnauthorizedError("Token missing");
   }
 
   const [, token] = authHeader.split(" ");
@@ -30,6 +30,6 @@ export async function ensureAuthenticated(
 
     next();
   } catch {
-    throw new AppError("Invalid token!", 401);
+    throw new UnauthorizedError("Invalid token!");
   }
 }
