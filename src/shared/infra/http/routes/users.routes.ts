@@ -11,14 +11,14 @@ const usersRoutes = Router();
 
 const createUserController = new CreateUserController();
 const listUsersController = new ListUsersController();
-const profileUserController = new GetUserProfileController();
+const getUserProfileController = new GetUserProfileController();
 const updateUserController = new UpdateUserController();
 const deleteUserController = new DeleteUserController();
 
 usersRoutes.post("/", createUserController.handle);
 usersRoutes.get("/", listUsersController.handle);
 
-usersRoutes.get("/profile", ensureAuthenticated, profileUserController.handle);
+usersRoutes.get("/profile", ensureAuthenticated, getUserProfileController.handle);
 usersRoutes.put("/profile/update", ensureAuthenticated, updateUserController.handle);
 usersRoutes.delete("/profile/delete", ensureAuthenticated, deleteUserController.handle);
 
