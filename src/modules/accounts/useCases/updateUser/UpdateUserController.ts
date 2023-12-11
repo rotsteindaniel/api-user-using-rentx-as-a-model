@@ -10,7 +10,10 @@ class UpdateUserController {
     const updateUserUseCase = container.resolve(UpdateUserUseCase);
 
     const updatedUser = await updateUserUseCase.execute({ id, name, email });
-    return response.json(updatedUser);
+    return response.json({
+      data: updatedUser,
+      message: "user updated successfully",
+    });
   }
 }
 
